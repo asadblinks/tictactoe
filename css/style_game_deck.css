@@ -1,0 +1,118 @@
+@charset "UTF-8";
+/* 
+    Document   : style
+    Created on : Mar 4, 2013, 9:54:31 AM
+    Author     : Asad Mahmood
+    Description:
+        The main document containing the CSS
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #333;
+  width: 100%;
+  height: auto;
+}
+
+.clear {
+  clear: both;
+}
+
+/* Tools */
+
+.red {color: #ED1C24;}
+.green {color: #00A651;}
+
+/**********************************************************/
+#page_wrapper {
+  height: auto;
+  width: 700px;
+  margin: 0 auto;  
+}
+
+#page_wrapper .header {
+  width: 100%;
+  float: left;
+}
+
+#page_wrapper .content {
+  width: 100%;
+  float: left;
+}
+
+.game-area {  
+  width: 450px;
+  float: left;
+  height: auto;
+}
+
+#canvas {
+  width: 318px;
+  margin: 0 auto;
+  height: auto;  
+}
+
+#status_msg {
+  padding: 10px 5px;
+  border: 1px solid #CCCCCC;
+  background: #ECF8F4;
+  margin: 10px 0;
+}
+
+#status_msg p {text-align: center}
+
+/* --------- this is row --------- */
+#canvas .row {
+  height: 100px;
+  width: 318px;
+  float: left;
+}
+#canvas .r-sep {
+  border: 1px solid #CCCCCC;
+  height: 7px;
+  width: 316px;
+  float: left;
+  background: #CCCCCC;
+}
+
+/* --------- this is column --------- */
+#canvas .row .col {
+  width: 98px; /* its 125px in width */
+  height: 98px; /* its 125px in height */
+  float: left;
+  padding: 1px;
+}
+#canvas .row .col:hover {
+  width: 98px; /* its 125px in width */
+  height: 98px; /* its 125px in height */
+  border: 1px solid #ED1C24;
+  cursor: pointer;
+  padding: 0;
+  background-color: #ffcccc;
+}
+
+/* --------- this is column vertical seperater --------- */
+#canvas .row .v-sep {
+  border: 1px solid #CCCCCC;
+  height: 98px;
+  width: 7px;
+  float: left;
+  background: #CCCCCC;
+}
+
+.chats {  
+  width: 225px;
+  float: right;
+  height: auto;
+}
+
+.tilep1 p,.tilep2 p {
+  margin-left: auto;
+  margin-right: auto;
+  width: 98px;
+  font-size: 72px;text-align: center;display: table-cell;height: 98px;vertical-align: middle}
