@@ -10,6 +10,8 @@ $(document).ready(function () {
 
   $.ajaxSetup({cache: false});
 
+  validationInputs();
+
   //When the user clicks on the tab
   $('body').on('click', 'ul.tabs li', function () {
     clearInterval(clock);
@@ -117,4 +119,53 @@ function myTimer() {
 function profileImage() {
   var full_url = base_url + "images/profile-2.jpg";
   $(".profileimage").attr('src', full_url);
+}
+
+function validateEmail(sEmail) {
+  var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+  var bool = null;
+  if (filter.test(sEmail)) {
+    bool = true;
+  } else {
+    bool = false;
+  }
+  return bool;
+}
+function validationInputs() {
+  var validEmail = true;
+  $(".input_fields input").blur(function () {
+    if (!$(this).val()) {
+      var id = $(this).attr('id');
+      $(".err_" + id).html("");
+      $(".err_" + id).append("<p>Input required</p>");
+      $("#err_subs").val("0");
+    } else {
+      var id = $(this).attr('id');
+      $(".err_" + id).html("");
+      if (id === 'user') {
+        var email = $(this).val();
+        if (!validateEmail(email)) {
+          $(".err_" + id).html("");
+          $(".err_" + id).append("<p>Invalid Email Address</p>");
+          $("#err_subs").val("0");
+          validEmail = false;
+        } else {
+          validEmail = true;
+        }
+      }
+      if (!validEmail) {
+        $("#err_subs").val("0");
+      } else {
+        $("#err_subs").val("1");
+      }
+    }
+  });
+
+  $('#access-forms').submit(function (e) {
+    var submission = parseInt($("#err_subs").val());
+    if (!submission) {
+      e.preventDefault();
+      return false;
+    }
+  });
 }

@@ -1,7 +1,14 @@
 <?php
 // accesscontrol.php
 require_once 'db.php';
+$full_site_path = '';
 $conn = connect();
+$site_title = SITE_TITLE;
+if (ENV_LOCAL) {
+  $full_site_path = SITE_DEV;
+} else {
+  $full_site_path = SITE_ONLINE;
+}
 if (isset($_POST['user'])) {
   $user = $_POST['user'];
 } else if (isset($_SESSION['user'])) {
@@ -15,20 +22,20 @@ if (isset($_POST['password'])) {
 }
 
 if (!isset($user)) {
-  $message = "You are unauthorized to see this page. Please login to access";
+  $message = "Please login to access this game";
   ?>
   <!DOCTYPE html>
   <html>
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title>Tic Tac Toe</title>
-
-      <link rel="stylesheet" type="text/css" href="css/reset-min.css">
-      <link rel="stylesheet" type="text/css" href="css/style.css">
-      <script src="js/jquery.js" type="text/javascript"></script>
-      <!--  We will be creating this file in the next part of the tutorial, I have included
-            it in this version to make the page tabs work -->
-      <script src="js/myjava.js" type="text/javascript"></script>
+      <title><?php echo $site_title; ?></title>
+      <script type="text/javascript">
+        var base_url = "<?php echo $full_site_path; ?>";
+      </script>
+      <link rel="stylesheet" type="text/css" href="<?php echo $full_site_path; ?>css/reset-min.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo $full_site_path; ?>css/style.css">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script type="text/javascript" src="<?php echo $full_site_path; ?>js/myjava.js"></script>
       <script type="text/javascript">
         var turn;
         var clock = 0;
@@ -62,13 +69,7 @@ if (!isset($user)) {
                 <div class="post">
                   <h3><?php echo $message ?></h3>
                   <div id="log">
-                    <form class="access-forms" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                      <input class="defaultText" title="Email Address" type="text" id="user" name="user" placeholder="Email Address">
-                      <div class="err_user"></div>
-                      <input type="password" id="password" name="password" placeholder="Password">
-                      <div class="err_password"></div>
-                      <input type="submit" id="login" name="login" value="Login"/>
-                    </form>
+                      <?php include_once 'login_display.php'; ?>
                   </div>
                 </div>
                 <?php
@@ -84,7 +85,7 @@ if (!isset($user)) {
                 <div id="log">
                   <form class="access-forms" action="register.php" method="post">
                     <label for="fname">Full Name :</label>
-                    <input type="text" id="fname" name="fname"/><br/>
+                    <input type="text" id="fname" name="fname" placeholder="Full Name"/><br/>
                     <div class="err_fname"></div>
                     <label for="email">Email Address :</label>
                     <input type="text" id="email" name="email"/><br/>
@@ -105,18 +106,13 @@ if (!isset($user)) {
                 </div>
               </div>
 
-
             </div><!--End Tab 2 -->
 
           </div><!--End Tab Container -->
 
-
-
-
         </div><!--End Main Content-->
 
       </div><!--End Wrapper -->
-
 
     </body>
   </html>
@@ -142,14 +138,14 @@ if (numRows($result) == 0) {
   <html>
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title>Tic Tac Toe</title>
-
-      <link rel="stylesheet" type="text/css" href="css/reset-min.css">
-      <link rel="stylesheet" type="text/css" href="css/style.css">
-      <script src="js/jquery.js" type="text/javascript"></script>
-      <!--  We will be creating this file in the next part of the tutorial, I have included
-            it in this version to make the page tabs work -->
-      <script src="js/myjava.js" type="text/javascript"></script>
+      <title><?php echo $site_title; ?></title>
+      <script type="text/javascript">
+        var base_url = "<?php echo $full_site_path; ?>";
+      </script>
+      <link rel="stylesheet" type="text/css" href="<?php echo $full_site_path; ?>css/reset-min.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo $full_site_path; ?>css/style.css">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script type="text/javascript" src="<?php echo $full_site_path; ?>js/myjava.js"></script>
       <script type="text/javascript">
         var turn;
         var clock = 0;
@@ -183,13 +179,7 @@ if (numRows($result) == 0) {
                 <div class="post">
                   <h3><?php echo $message ?></h3>
                   <div id="log">
-                    <form class="access-forms" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                      <input class="defaultText" title="Email Address" type="text" id="user" name="user" placeholder="Email Address">
-                      <div class="err_user"></div>
-                      <input type="password" id="password" name="password" placeholder="Password">
-                      <div class="err_password"></div>
-                      <input type="submit" id="login" name="login" value="Login"/>
-                    </form>
+                      <?php include_once 'login_display.php'; ?>
                   </div>
                 </div>
                 <?php
@@ -226,18 +216,13 @@ if (numRows($result) == 0) {
                 </div>
               </div>
 
-
             </div><!--End Tab 2 -->
 
           </div><!--End Tab Container -->
 
-
-
-
         </div><!--End Main Content-->
 
       </div><!--End Wrapper -->
-
 
     </body>
   </html>

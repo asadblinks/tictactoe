@@ -37,7 +37,53 @@ body, input{
     color: #333;
     line-height: 1.28;
     word-wrap:break-word;
+}
 
+.btn_submit {
+    background-color: #808080;
+    border: none;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 6px 12px;
+}
+
+.btn_submit:hover {
+    background-color: #bfbfbf;
+}
+
+.btn_submit:active {
+    background-color: #bfbfbf;
+    color: #000000;
+}
+
+.btn_submit .disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.input_fields {
+    margin-bottom: 6px;
+    float: left;
+    width: 100%;
+}
+
+input.input_login {
+    border-radius: 2px;
+    width: 200px;
+    float: left;
+    padding: 3px 6px;
+}
+
+.error_fields {
+    float: left;
+    padding: 2px 6px;
+}
+
+.error_fields p {
+    margin: 0;
+    color: #FF0000;
+    font-weight: bold;
 }
 /*-----------------------------------------------------------------------------------*/
 /*	Typography

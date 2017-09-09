@@ -7,5 +7,5 @@ if (isset($_SESSION)) {
   }
 }
 
-header('Location: access.php');
+header('Location: index.php');
 ?>

@@ -5,7 +5,9 @@ $access = FALSE;
 $fb_js = '';
 $errors = '';
 $style = '';
+$full_site_path = '';
 $conn = connect();
+$site_title = SITE_TITLE;
 if (ENV_LOCAL) {
   require_once 'accesscontrol.php';
   $full_site_path = SITE_DEV;
@@ -53,12 +55,12 @@ if (ENV_LOCAL) {
 ?>
 <html>
   <head>
-    <title>TicTacToe Game</title>
-    <link rel="stylesheet" type="text/css" href="css/reset-min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title><?php echo $site_title; ?></title>
     <script type="text/javascript">
       var base_url = "<?php echo $full_site_path; ?>";
     </script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $full_site_path; ?>css/reset-min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $full_site_path; ?>css/style.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="<?php echo $full_site_path; ?>js/globals.js"></script>
     <?php echo $fb_js; ?>
